@@ -9,15 +9,18 @@ function ModalCompnent(props) {
   useEffect(() => {
     setShowModal(props.bool);
     setType(props.type);
-    body();
+    bodyText();
+
+    // eslint-disable-next-line
   }, [props]);
 
   const handleClose = () => {
     setShowModal(false);
     setType('');
+    props = null;
   };
 
-  const body = () => {
+  const bodyText = () => {
     if (props.type === 'login') {
       setBodyMessage('Wlecome back!');
     } else if (props.type === 'register') {
@@ -41,7 +44,7 @@ function ModalCompnent(props) {
         </Form.Group>
 
         <Button variant='primary' type='submit'>
-          Submit
+          login
         </Button>
       </Form>
     );
@@ -50,7 +53,7 @@ function ModalCompnent(props) {
   const registerForm = () => {
     return (
       <Form onSubmit={console.log('register')}>
-        <Form.Group>
+        <Form.Group controlId='textUsername'>
           <Form.Label>Username</Form.Label>
           <Form.Control type='text' placeholder='Username' />
         </Form.Group>
@@ -65,13 +68,13 @@ function ModalCompnent(props) {
           <Form.Control type='password' placeholder='Password' />
         </Form.Group>
 
-        <Form.Group controlId='formBasicPassword'>
+        <Form.Group controlId='formBasicPasswordConfirmation'>
           <Form.Label>Password Confirmation</Form.Label>
-          <Form.Control type='password' placeholder='Password' />
+          <Form.Control type='password' placeholder='Password Confirmation' />
         </Form.Group>
 
         <Button variant='primary' type='submit'>
-          Submit
+          Register
         </Button>
       </Form>
     );
