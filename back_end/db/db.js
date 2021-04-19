@@ -12,7 +12,7 @@ const connectDB = async () => {
       useFindAndModify: false,
     });
 
-    console.log('🔵 MongoDB connected...');
+    return mongoose;
   } catch (err) {
     console.error(err.message);
     // exit process if cannot connect!
