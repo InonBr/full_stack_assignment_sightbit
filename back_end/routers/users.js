@@ -1,8 +1,11 @@
+require('dotenv').config();
 const express = require('express');
 const router = new express.Router();
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+
+const User = require('../models/User');
 
 router.post(
   '/register',
@@ -22,16 +25,44 @@ router.post(
       }
     }),
   ],
-  (req, res) => {
-    const errors = validationResult(req);
+  async (req, res) => {
+    try {
+      const errors = validationResult(req);
 
-    if (!errors.isEmpty()) {
       // if there are errors return 400 (bed request);
-      return res.status(400).json({ errors: errors.array() });
-    }
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
 
-    console.log(req.body);
-    res.send(req.body);
+      const { username, email } = req.body;
+
+      const password = await bcrypt.hash(req.body.password, 10);
+
+      const newUser = new User({
+        username,
+        email,
+        password,
+      });
+
+      await newUser.save();
+
+      const token = jwt.sign(
+        {
+          id: newUser._id,
+          username: newUser.username,
+          email: newUser.email,
+        },
+        process.env.TOKEN
+      );
+
+      return res.status(200).json({
+        msg: 'user saved successfully',
+        token,
+      });
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send({ err: 'Server error', message: err.message });
+    }
   }
 );
 
