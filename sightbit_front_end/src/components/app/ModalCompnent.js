@@ -40,7 +40,7 @@ function ModalCompnent(props) {
       </Modal.Header>
       <Modal.Body>
         {bodyMessage}
-        {props.type === 'login' && <LoginForm />}
+        {props.type === 'login' && <LoginForm handleClose={handleClose} />}
         {props.type === 'register' && (
           <RegisterForm handleClose={handleClose} />
         )}

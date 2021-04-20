@@ -1,15 +1,44 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button, Form } from 'react-bootstrap';
+import { loginApi } from '../../lib/api';
+import Cookies from 'universal-cookie';
 import '../styles/forms.css';
 
-const LoginForm = () => {
+const LoginForm = (props) => {
+  const cookies = new Cookies();
+
+  const [showError, setShowError] = useState(false);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    loginApi(data)
+      .then((response) => {
+        cookies.set('userToken', response.data.token);
+        props.handleClose();
+      })
+      .catch((error) => {
+        const errorMessage = error.response.data.msg;
+        if (errorMessage.includes('invalid')) {
+          setShowError(true);
+        }
+      });
+  };
+
+  const errMessageToShow = () => {
+    return (
+      <Form.Group>
+        <Form.Label className='red-text center-text' column='lg'>
+          Invalid credentials!
+        </Form.Label>
+      </Form.Group>
+    );
+  };
 
   return (
     <Form className='mt-3' onSubmit={handleSubmit(onSubmit)}>
@@ -54,8 +83,10 @@ const LoginForm = () => {
         )}
       </Form.Group>
 
+      <Form.Group>{showError && errMessageToShow()}</Form.Group>
+
       <Button variant='primary' type='submit'>
-        Register
+        Login
       </Button>
     </Form>
   );
