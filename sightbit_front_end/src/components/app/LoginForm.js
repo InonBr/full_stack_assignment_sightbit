@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button, Form } from 'react-bootstrap';
 import '../styles/forms.css';

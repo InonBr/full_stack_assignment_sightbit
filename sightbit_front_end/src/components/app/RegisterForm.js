@@ -1,9 +1,16 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button, Form } from 'react-bootstrap';
+import Cookies from 'universal-cookie';
 import '../styles/forms.css';
 
-const RegisterForm = () => {
+import { registerApi } from '../../lib/api';
+
+const RegisterForm = (props) => {
+  const cookies = new Cookies();
+
+  const [showError, setShowError] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -14,7 +21,29 @@ const RegisterForm = () => {
   const password = useRef('');
   password.current = watch('password', '');
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    registerApi(data)
+      .then((response) => {
+        cookies.set('userToken', response.data.token);
+        props.handleClose();
+      })
+      .catch((error) => {
+        const errorMessage = error.response.data.message;
+        if (errorMessage.includes('duplicate')) {
+          setShowError(true);
+        }
+      });
+  };
+
+  const errMessageToShow = () => {
+    return (
+      <Form.Group>
+        <Form.Label className='red-text center-text' column='lg'>
+          User already exists!
+        </Form.Label>
+      </Form.Group>
+    );
+  };
 
   return (
     <Form className='mt-3' onSubmit={handleSubmit(onSubmit)}>
@@ -101,6 +130,8 @@ const RegisterForm = () => {
           </Form.Text>
         )}
       </Form.Group>
+
+      {showError && errMessageToShow()}
 
       <Button variant='primary' type='submit'>
         Register

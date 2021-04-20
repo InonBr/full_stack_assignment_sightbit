@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 
 import RegisterForm from './RegisterForm';
 import LoginForm from './LoginForm';
@@ -33,31 +33,6 @@ function ModalCompnent(props) {
     }
   };
 
-  const logInSubmit = (event) => {
-    event.preventDefault();
-    console.log('log in done');
-  };
-
-  // const logInForm = () => {
-  //   return (
-  //     <Form onSubmit={(event) => logInSubmit(event)}>
-  //       <Form.Group controlId='formBasicEmail'>
-  //         <Form.Label>Email address</Form.Label>
-  //         <Form.Control type='email' placeholder='Enter email' />
-  //       </Form.Group>
-
-  //       <Form.Group controlId='formBasicPassword'>
-  //         <Form.Label>Password</Form.Label>
-  //         <Form.Control type='password' placeholder='Password' />
-  //       </Form.Group>
-
-  //       <Button variant='primary' type='submit'>
-  //         login
-  //       </Button>
-  //     </Form>
-  //   );
-  // };
-
   return (
     <Modal show={showModal} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -66,7 +41,9 @@ function ModalCompnent(props) {
       <Modal.Body>
         {bodyMessage}
         {props.type === 'login' && <LoginForm />}
-        {props.type === 'register' && <RegisterForm />}
+        {props.type === 'register' && (
+          <RegisterForm handleClose={handleClose} />
+        )}
       </Modal.Body>
     </Modal>
   );
