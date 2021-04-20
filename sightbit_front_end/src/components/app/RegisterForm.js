@@ -82,6 +82,26 @@ const RegisterForm = () => {
         )}
       </Form.Group>
 
+      <Form.Group>
+        <Form.Label htmlFor='password'>Confirm Password</Form.Label>
+        <Form.Control
+          id='passwordConfirm'
+          name='passwordConfirm'
+          type='password'
+          {...register('passwordConfirm', {
+            validate: (value) =>
+              value === password.current || 'The passwords do not match',
+          })}
+          placeholder='Confirm Password'
+        />
+
+        {errors.passwordConfirm && (
+          <Form.Text className='red-text' role='alert'>
+            {errors.passwordConfirm.message}
+          </Form.Text>
+        )}
+      </Form.Group>
+
       <Button variant='primary' type='submit'>
         Register
       </Button>
