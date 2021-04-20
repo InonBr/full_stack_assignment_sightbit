@@ -3,38 +3,17 @@ import { useForm } from 'react-hook-form';
 import { Button, Form } from 'react-bootstrap';
 import '../styles/forms.css';
 
-const RegisterForm = () => {
+const LoginForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
   } = useForm();
-
-  const password = useRef('');
-  password.current = watch('password', '');
 
   const onSubmit = (data) => console.log(data);
 
   return (
     <Form className='mt-3' onSubmit={handleSubmit(onSubmit)}>
-      <Form.Group>
-        <Form.Label htmlFor='username'>Username</Form.Label>
-        <Form.Control
-          id='username'
-          aria-invalid={errors.username ? 'true' : 'false'}
-          {...register('username', { required: true })}
-          type='text'
-          placeholder='Username'
-        />
-
-        {errors.username && errors.username.type === 'required' && (
-          <Form.Text className='red-text' role='alert'>
-            Username is required
-          </Form.Text>
-        )}
-      </Form.Group>
-
       <Form.Group>
         <Form.Label htmlFor='email'>Email address</Form.Label>
         <Form.Control
@@ -65,39 +44,13 @@ const RegisterForm = () => {
           id='password'
           name='password'
           type='password'
-          {...register('password', {
-            required: 'You must specify a password',
-            minLength: {
-              value: 6,
-              message: 'Password must have at least 6 characters',
-            },
-          })}
+          {...register('password', { required: 'You must specify a password' })}
           placeholder='password'
         />
 
         {errors.password && (
           <Form.Text className='red-text' role='alert'>
             {errors.password.message}
-          </Form.Text>
-        )}
-      </Form.Group>
-
-      <Form.Group>
-        <Form.Label htmlFor='password'>Confirm Password</Form.Label>
-        <Form.Control
-          id='passwordConfirm'
-          name='passwordConfirm'
-          type='password'
-          {...register('passwordConfirm', {
-            validate: (value) =>
-              value === password.current || 'The passwords do not match',
-          })}
-          placeholder='Confirm Password'
-        />
-
-        {errors.passwordConfirm && (
-          <Form.Text className='red-text' role='alert'>
-            {errors.passwordConfirm.message}
           </Form.Text>
         )}
       </Form.Group>
@@ -109,4 +62,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default LoginForm;

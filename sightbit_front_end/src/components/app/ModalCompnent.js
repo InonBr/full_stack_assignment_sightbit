@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
 import RegisterForm from './RegisterForm';
+import LoginForm from './LoginForm';
 
 function ModalCompnent(props) {
   const [showModal, setShowModal] = useState(false);
@@ -37,34 +38,9 @@ function ModalCompnent(props) {
     console.log('log in done');
   };
 
-  const logInForm = () => {
-    return (
-      <Form onSubmit={(event) => logInSubmit(event)}>
-        <Form.Group controlId='formBasicEmail'>
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type='email' placeholder='Enter email' />
-        </Form.Group>
-
-        <Form.Group controlId='formBasicPassword'>
-          <Form.Label>Password</Form.Label>
-          <Form.Control type='password' placeholder='Password' />
-        </Form.Group>
-
-        <Button variant='primary' type='submit'>
-          login
-        </Button>
-      </Form>
-    );
-  };
-
-  // const registerForm = () => {
+  // const logInForm = () => {
   //   return (
-  //     <Form onSubmit={console.log('register')}>
-  //       <Form.Group controlId='textUsername'>
-  //         <Form.Label>Username</Form.Label>
-  //         <Form.Control type='text' placeholder='Username' />
-  //       </Form.Group>
-
+  //     <Form onSubmit={(event) => logInSubmit(event)}>
   //       <Form.Group controlId='formBasicEmail'>
   //         <Form.Label>Email address</Form.Label>
   //         <Form.Control type='email' placeholder='Enter email' />
@@ -75,13 +51,8 @@ function ModalCompnent(props) {
   //         <Form.Control type='password' placeholder='Password' />
   //       </Form.Group>
 
-  //       <Form.Group controlId='formBasicPasswordConfirmation'>
-  //         <Form.Label>Password Confirmation</Form.Label>
-  //         <Form.Control type='password' placeholder='Password Confirmation' />
-  //       </Form.Group>
-
   //       <Button variant='primary' type='submit'>
-  //         Register
+  //         login
   //       </Button>
   //     </Form>
   //   );
@@ -94,8 +65,7 @@ function ModalCompnent(props) {
       </Modal.Header>
       <Modal.Body>
         {bodyMessage}
-        {props.type === 'login' && logInForm()}
-        {/* {props.type === 'register' && registerForm()} */}
+        {props.type === 'login' && <LoginForm />}
         {props.type === 'register' && <RegisterForm />}
       </Modal.Body>
     </Modal>
