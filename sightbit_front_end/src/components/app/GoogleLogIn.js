@@ -10,6 +10,7 @@ const GoogleLogInButton = () => {
   const googleSuccess = async (res) => {
     try {
       cookies.set('userToken', res.tokenId);
+      window.location = '/';
     } catch (err) {
       console.error({ err: 'Server error', msg: err.message });
     }

@@ -1,10 +1,13 @@
 import './App.css';
 import { useState } from 'react';
+import Cookies from 'universal-cookie';
 import Navbar from './components/app/Navbar';
 import ModalCompnent from './components/app/ModalCompnent';
 import GoogleLogInButton from './components/app/GoogleLogIn';
+import BodyWelcomeMessage from './components/app/BodyWelcomeMessage';
 
 function App() {
+  const cookies = new Cookies();
   const [modalState, setModalState] = useState(false);
   const [type, setType] = useState('');
 
@@ -16,8 +19,9 @@ function App() {
   return (
     <div className='App'>
       <Navbar hendleModals={hendleModals} />
-      <GoogleLogInButton />
+      {!cookies.get('userToken') && <GoogleLogInButton />}
       <ModalCompnent type={type} bool={modalState} />
+      <BodyWelcomeMessage />
     </div>
   );
 }

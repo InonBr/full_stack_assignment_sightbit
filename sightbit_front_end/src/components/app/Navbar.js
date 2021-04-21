@@ -1,35 +1,66 @@
-import { Navbar, Nav, Button, Form } from 'react-bootstrap';
+import { Navbar, Nav, Button, Form, Image } from 'react-bootstrap';
+import Cookies from 'universal-cookie';
+import '../styles/navbar.css';
 
 function NavBar(props) {
+  const cookies = new Cookies();
+
+  const loginButton = () => {
+    return (
+      <div className='mr-2'>
+        <Button
+          variant='outline-info'
+          onClick={() => props.hendleModals('login', true)}
+        >
+          Login
+        </Button>
+      </div>
+    );
+  };
+
+  const registerButton = () => {
+    return (
+      <Button
+        variant='outline-info'
+        onClick={() => props.hendleModals('register', true)}
+      >
+        Register
+      </Button>
+    );
+  };
+
+  const logoutButton = () => {
+    return (
+      <div className='ml-2'>
+        <Button variant='outline-info' onClick={() => handleLogout()}>
+          Logout
+        </Button>
+      </div>
+    );
+  };
+
+  const handleLogout = () => {
+    cookies.remove('userToken');
+    window.location = '/';
+  };
+
   return (
     <>
-      <Navbar bg='dark' variant='dark'>
-        <Navbar.Brand href='/'>Navbar</Navbar.Brand>
-        <Nav className='mr-auto'>
-          <Nav.Link href='/'>Home</Nav.Link>
-          <Nav.Link href='/Welcome'>Welcome</Nav.Link>
-        </Nav>
+      <Navbar className='padding-fix' bg='dark' variant='dark'>
+        <Navbar.Brand href='/'>
+          <Image
+            id='singbit-logo'
+            src='https://res.cloudinary.com/crunchbase-production/image/upload/xlblui60a6ublu9cvsfv'
+          />
+        </Navbar.Brand>
+        <Nav className='mr-auto' />
 
         <Form inline>
-          <div className='mr-2'>
-            <Button
-              variant='outline-info'
-              onClick={() => props.hendleModals('login', true)}
-            >
-              Login
-            </Button>
-          </div>
+          {!cookies.get('userToken') && loginButton()}
 
-          <Button
-            variant='outline-info'
-            onClick={() => props.hendleModals('register', true)}
-          >
-            Register
-          </Button>
+          {!cookies.get('userToken') && registerButton()}
 
-          <div className='ml-2'>
-            <Button variant='outline-info'>Logout</Button>
-          </div>
+          {cookies.get('userToken') && logoutButton()}
         </Form>
       </Navbar>
     </>

@@ -21,6 +21,7 @@ const LoginForm = (props) => {
       .then((response) => {
         cookies.set('userToken', response.data.token);
         props.handleClose();
+        window.location = '/';
       })
       .catch((error) => {
         const errorMessage = error.response.data.msg;
