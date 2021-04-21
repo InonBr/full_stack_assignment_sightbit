@@ -1,16 +1,23 @@
 import { GoogleLogin } from 'react-google-login';
 import { Button, Image } from 'react-bootstrap';
+import Cookies from 'universal-cookie';
 import '../styles/icon.css';
 
 const GoogleLogInButton = () => {
   const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+  const cookies = new Cookies();
 
   const googleSuccess = async (res) => {
-    console.log(res);
+    try {
+      cookies.set('userToken', res.tokenId);
+    } catch (err) {
+      console.error({ err: 'Server error', msg: err.message });
+    }
   };
 
-  const googleError = () => {
+  const googleError = (err) => {
     alert('Google Sign In was unsuccessful. Try again later');
+    console.error(err);
   };
 
   return (
