@@ -2,6 +2,7 @@ import './App.css';
 import { useState } from 'react';
 import Navbar from './components/app/Navbar';
 import ModalCompnent from './components/app/ModalCompnent';
+import GoogleLogInButton from './components/app/GoogleLogIn';
 
 function App() {
   const [modalState, setModalState] = useState(false);
@@ -15,6 +16,7 @@ function App() {
   return (
     <div className='App'>
       <Navbar hendleModals={hendleModals} />
+      <GoogleLogInButton />
       <ModalCompnent type={type} bool={modalState} />
     </div>
   );
