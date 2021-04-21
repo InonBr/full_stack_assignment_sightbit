@@ -46,7 +46,7 @@ function NavBar(props) {
 
   return (
     <>
-      <Navbar className='padding-fix' bg='dark' variant='dark'>
+      <Navbar className='padding-fix nav mb-5' bg='light' variant='dark'>
         <Navbar.Brand href='/'>
           <Image
             id='singbit-logo'

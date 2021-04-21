@@ -1,4 +1,5 @@
 import './App.css';
+import './components/styles/page.css';
 import { useState } from 'react';
 import Cookies from 'universal-cookie';
 import Navbar from './components/app/Navbar';

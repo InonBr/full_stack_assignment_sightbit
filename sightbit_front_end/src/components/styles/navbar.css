@@ -1,3 +1,8 @@
+.nav {
+  background-color: #e8e8e8 !important;
+  height: 7vh;
+}
+
 #singbit-logo {
-  width: 150px;
+  width: 100px;
 }
