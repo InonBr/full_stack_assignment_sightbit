@@ -4,7 +4,7 @@ please clone this directory and read the manual in order to understend how to ma
 
 ## Front End Setup
 
-1. Enter the directory "sightbit_front_end" in the terminal and run yarn install.
+1. Enter the directory "sightbit_front_end" in the terminal and run `yarn install`.
 2. Next, we need to you to get a seacret key from Goole, so you can register using it:
    1. Go to: http://console.developers.google.com/
    2. On the left bar, go click on "OAuth consent screen"
@@ -22,11 +22,15 @@ please clone this directory and read the manual in order to understend how to ma
    14. On name you can use the same name we used before: "full_stack_assignment_sightbit".
    15. Add to "Authorized JavaScript origins" and "Authorized redirect URIs" add http://localhost:3000.
    16. And click on "CREATE" and you'll get your "Your Client ID".
-   17. On the base of front end app, create an ".env" file and add there your client ID as:
-       REACT_APP_GOOGLE_CLIENT_ID=39642...................
+   17. On the base folder of the front end app, create an `.env` file and add there your client ID as:
+       `REACT_APP_GOOGLE_CLIENT_ID=39642...................`<br/>
        **Importent: if react app was running, reaset the server!!!**
 3. Now, run `yarn start` in order to run the front end.
 
 ## Back End Setup
 
-1.
+1. In the mail that I sent you, there is an `.env` file, please place it on the base folder of the back end.
+2. Enter the directory "back_end" in the terminal and run `yarn install` in order to intall all of the dependencies of the project.
+3. run `node server.js` in order to run the server and connect the db.
+
+**Please make sure that both servers are running while testing the app!**
