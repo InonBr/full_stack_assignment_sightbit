@@ -1,4 +1,4 @@
-# full_stack_assignment_sightbit
+# Full Stack Assignment Sightbit
 
 please clone this directory and read the manual in order to understend how to make it work.
 
@@ -23,5 +23,10 @@ please clone this directory and read the manual in order to understend how to ma
    15. Add to "Authorized JavaScript origins" and "Authorized redirect URIs" add http://localhost:3000.
    16. And click on "CREATE" and you'll get your "Your Client ID".
    17. On the base of front end app, create an ".env" file and add there your client ID as:
-       REACT_APP_GOOGLE_CLIENT_ID=39642**************\*\*\***************.
+       REACT_APP_GOOGLE_CLIENT_ID=39642...................
        **Importent: if react app was running, reaset the server!!!**
+3. Now, run `yarn start` in order to run the front end.
+
+## Back End Setup
+
+1.
