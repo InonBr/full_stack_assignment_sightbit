@@ -2,12 +2,48 @@ import { Button, Image } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import GoogleLogInButton from './GoogleLogInButton';
+import { loginApi, registerApi } from '../../lib/api';
 import '../styles/nevbar.css';
 
 function Nevbar() {
   const loginState = useSelector((state) => state.logedin);
   const dispatch = useDispatch();
-  // const [x, setX] = useState('');
+
+  const loginButton = () => {
+    return (
+      <Button
+        className='mb-3'
+        variant='outline-dark'
+        onClick={() => dispatch({ type: 'login' })}
+      >
+        Login
+      </Button>
+    );
+  };
+
+  const registerButton = () => {
+    return (
+      <Button
+        className='mb-3'
+        variant='outline-dark'
+        onClick={() => dispatch({ type: 'login' })}
+      >
+        Register
+      </Button>
+    );
+  };
+
+  const logoutButton = () => {
+    return (
+      <Button
+        className='mb-3'
+        variant='outline-dark'
+        onClick={() => dispatch({ type: 'logout' })}
+      >
+        Logout
+      </Button>
+    );
+  };
 
   // useEffect(() => {
   //   if (loginState) {
@@ -31,26 +67,10 @@ function Nevbar() {
         />
       </div>
       <div className='row justify-content-around'>
-        <GoogleLogInButton />
-        <Button
-          className='mb-3'
-          variant='outline-dark'
-          // onClick={() => props.hendleModals('login', true)}
-        >
-          Login
-        </Button>
-
-        <Button
-          className='mb-3'
-          variant='outline-dark'
-          // onClick={() => props.hendleModals('register', true)}
-        >
-          Register
-        </Button>
-
-        <Button className='mb-3' variant='outline-dark'>
-          Logout
-        </Button>
+        {!loginState && loginButton()}
+        {!loginState && <GoogleLogInButton />}
+        {!loginState && registerButton()}
+        {loginState && logoutButton()}
       </div>
     </div>
   );

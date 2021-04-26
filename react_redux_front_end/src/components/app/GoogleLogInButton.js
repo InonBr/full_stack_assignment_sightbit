@@ -34,7 +34,7 @@ const GoogleLogInButton = () => {
             id='google-small'
             src='https://pics.freeicons.io/uploads/icons/png/2659939281579738432-512.png'
           />
-          <span className='ml-3'> Sign in with Google</span>
+          <span className='ml-3 mr-3'> Sign in with Google</span>
         </Button>
       )}
       onSuccess={googleSuccess}
