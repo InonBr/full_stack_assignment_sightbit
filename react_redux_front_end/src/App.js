@@ -1,11 +1,10 @@
 import './App.css';
-import { Button } from 'react-bootstrap';
-
+import Nevbar from './components/app/Nevbar';
 function App() {
   return (
     <div className='App'>
+      <Nevbar />
       <h1>hello world</h1>
-      <Button variant='primary'>Primary</Button>
     </div>
   );
 }
