@@ -4,12 +4,12 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import loginReducer from './reducers/loginReducer';
+import rootReducer from './reducers/rootReducer';
 
-const loginStore = createStore(loginReducer);
+const store = createStore(rootReducer);
 
 ReactDOM.render(
-  <Provider store={loginStore}>
+  <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById('root')

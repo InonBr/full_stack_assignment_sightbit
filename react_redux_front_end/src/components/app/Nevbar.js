@@ -1,20 +1,21 @@
 import { Button, Image } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
 import GoogleLogInButton from './GoogleLogInButton';
-import { loginApi, registerApi } from '../../lib/api';
+// import { loginApi, registerApi } from '../../lib/api';
 import '../styles/nevbar.css';
 
 function Nevbar() {
-  const loginState = useSelector((state) => state.logedin);
+  const state = useSelector((state) => state);
   const dispatch = useDispatch();
+
+  console.log(state);
 
   const loginButton = () => {
     return (
       <Button
         className='mb-3'
         variant='outline-dark'
-        onClick={() => dispatch({ type: 'login' })}
+        onClick={() => dispatch({ type: 'loginForm' })}
       >
         Login
       </Button>
@@ -26,7 +27,7 @@ function Nevbar() {
       <Button
         className='mb-3'
         variant='outline-dark'
-        onClick={() => dispatch({ type: 'login' })}
+        onClick={() => dispatch({ type: 'registerForm' })}
       >
         Register
       </Button>
@@ -45,18 +46,6 @@ function Nevbar() {
     );
   };
 
-  // useEffect(() => {
-  //   if (loginState) {
-  //     setX(`${loginState}`);
-  //   } else {
-  //     setX(`${loginState}`);
-  //   }
-  // }, [loginState]);
-
-  // <Button variant='primary' onClick={() => dispatch({ type: 'login' })}>
-  //       login
-  //     </Button>
-
   return (
     <div className='nevbar-style'>
       <div>
@@ -67,10 +56,10 @@ function Nevbar() {
         />
       </div>
       <div className='row justify-content-around'>
-        {!loginState && loginButton()}
-        {!loginState && <GoogleLogInButton />}
-        {!loginState && registerButton()}
-        {loginState && logoutButton()}
+        {!state.logedin && loginButton()}
+        {!state.logedin && <GoogleLogInButton />}
+        {!state.logedin && registerButton()}
+        {state.logedin && logoutButton()}
       </div>
     </div>
   );
