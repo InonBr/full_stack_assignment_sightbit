@@ -1,14 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from 'react-bootstrap';
+import LoginForm from './LogInForm';
 
 function ModalComponent() {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
-
-  const handleClose = () => {
-    // setShowModal(false);
-    // setType('');
-  };
 
   return (
     <Modal show={state.show} onHide={() => dispatch({ type: 'closeModal' })}>
@@ -19,7 +15,7 @@ function ModalComponent() {
 
       <Modal.Body>
         {/* {bodyMessage} */}
-        {/* {props.type === 'login' && <LoginForm handleClose={handleClose} />} */}
+        {state.formType === 'loginForm' && <LoginForm />}
         {/* {props.type === 'register' && ( */}
         {/* <RegisterForm handleClose={handleClose} /> */}
         {/* )} */}
