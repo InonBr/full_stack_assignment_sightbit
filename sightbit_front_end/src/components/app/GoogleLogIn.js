@@ -7,6 +7,11 @@ const GoogleLogInButton = () => {
   const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
   const cookies = new Cookies();
 
+  /**
+   * if google sent back the user token (user sign up successfully),
+   * we will store the token we've got from in cookies.
+   */
+
   const googleSuccess = async (res) => {
     try {
       cookies.set('userToken', res.tokenId);

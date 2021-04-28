@@ -28,8 +28,9 @@ router.post(
   async (req, res) => {
     try {
       const errors = validationResult(req);
-
-      // if there are errors return 400 (bed request);
+      /**
+       * if there are errors return 400 (bed request);
+       */
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }
@@ -76,7 +77,9 @@ router.post(
     try {
       const errors = validationResult(req);
 
-      // if there are errors return 400 (bed request);
+      /**
+       * if there are errors return 400 (bed request);
+       */
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }

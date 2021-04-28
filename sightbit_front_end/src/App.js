@@ -12,6 +12,12 @@ function App() {
   const [modalState, setModalState] = useState(false);
   const [type, setType] = useState('');
 
+  /**
+   * the function "hendleModals",
+   * will tell the modal which type of form will it show to the user.
+   * we will pass it using props.
+   */
+
   const hendleModals = (type, bool) => {
     setModalState(bool);
     setType(type);

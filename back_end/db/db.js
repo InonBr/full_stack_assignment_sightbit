@@ -1,6 +1,10 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 
+/**
+ * connecting the db using mongo key (from .env file) and mongoose
+ */
+
 const db = process.env.MONGODB_KEY;
 
 const connectDB = async () => {

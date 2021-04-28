@@ -12,7 +12,10 @@ app.use(express.json());
 
 app.use(users);
 
-// connect to mongoDB and run the server
+/**
+ * connecting to mongoDB
+ * only if connected successfully, we will also run the server.
+ */
 connectDB().then(() => {
   console.log('🔵 MongoDB connected...');
   app.listen(port, () => {

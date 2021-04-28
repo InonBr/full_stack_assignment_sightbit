@@ -44,6 +44,11 @@ function NavBar(props) {
     window.location = '/';
   };
 
+  /**
+   * the buttons on the nevbar will be dependent on the the cookies,
+   * if the cookie "userToken" is "undefined", the user is not loggedin and the opposite.
+   */
+
   return (
     <>
       <Navbar className='padding-fix nav mb-5' bg='light' variant='dark'>

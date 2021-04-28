@@ -33,6 +33,10 @@ function ModalCompnent(props) {
     }
   };
 
+  /**
+   * the modal will show the correct form depending on the props we got
+   */
+
   return (
     <Modal show={showModal} onHide={handleClose}>
       <Modal.Header closeButton>
