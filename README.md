@@ -4,7 +4,10 @@ please clone this directory and read the manual in order to understend how to ru
 
 ## Front End Setup
 
-1. Enter the directory "sightbit_front_end" in the terminal and run `yarn install`.
+We have two types of front end apps, one, using react redux (the repository name is "react_redux_front_end") and one is using vanilla react, using hooks in order to pass the states (the repository name is "sightbit_front_end").
+The set up for both types of the front end react apps is the same, please follow instructions below.
+
+1. Enter the directory "sightbit_front_end" or "react_redux_front_end" in the terminal and run `yarn install`.
 2. Next, we need you to get a secret key from Goole, so you can register using it:
 
    1. Go to: http://console.developers.google.com/
