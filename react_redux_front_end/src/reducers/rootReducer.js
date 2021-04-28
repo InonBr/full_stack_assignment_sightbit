@@ -1,3 +1,10 @@
+/**
+ * this reducer will sore the state of the app:
+ * logedin -> will chack if there is a connected user.
+ * show -> will "tell" the modal to it should be open and close.
+ * formType -> will "tell the modal which form should it present."
+ */
+
 const initialState = { logedin: false, show: false, formType: '' };
 
 const rootReducer = (state = initialState, action) => {

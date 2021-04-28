@@ -46,6 +46,10 @@ function Nevbar() {
     );
   };
 
+  /**
+   * the buttons on the nevbar will be dependent on the state of the user.
+   */
+
   return (
     <div className='nevbar-style'>
       <div>

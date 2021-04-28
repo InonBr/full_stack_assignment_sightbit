@@ -8,6 +8,11 @@ const GoogleLogInButton = () => {
   const dispatch = useDispatch();
   const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
+  /**
+   * if google sent back the user token (user sign up successfully),
+   * we will store the token we've got from google as localForage.
+   */
+
   const setLocalForage = (data) => {
     localForage
       .setItem('userToken', data)

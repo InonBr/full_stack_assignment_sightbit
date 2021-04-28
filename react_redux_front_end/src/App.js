@@ -10,6 +10,11 @@ function App() {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
+  /**
+   * when starting the app or logedin status as changed,
+   * the App will rerender itself.
+   */
+
   useEffect(() => {
     localForage.getItem('userToken').then((res) => {
       if (res) {
