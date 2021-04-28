@@ -1,7 +1,6 @@
 import { Button, Image } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import GoogleLogInButton from './GoogleLogInButton';
-// import { loginApi, registerApi } from '../../lib/api';
 import '../styles/nevbar.css';
 
 function Nevbar() {

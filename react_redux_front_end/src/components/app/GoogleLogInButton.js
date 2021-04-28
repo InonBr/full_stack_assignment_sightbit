@@ -1,15 +1,27 @@
+import { useDispatch } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
 import { Button, Image } from 'react-bootstrap';
+import localForage from 'localforage';
 import '../styles/icon.css';
 
 const GoogleLogInButton = () => {
+  const dispatch = useDispatch();
   const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+
+  const setLocalForage = (data) => {
+    localForage
+      .setItem('userToken', data)
+      .then(() => {
+        dispatch({ type: 'login' });
+      })
+      .catch(function (err) {
+        console.error(err);
+      });
+  };
 
   const googleSuccess = async (res) => {
     try {
-      console.log(res.tokenId);
-      //   cookies.set('userToken', res.tokenId);
-      //   window.location = '/';
+      setLocalForage(res.tokenId);
     } catch (err) {
       console.error({ err: 'Server error', msg: err.message });
     }

@@ -6,6 +6,7 @@ const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'login':
       changeState.logedin = true;
+      changeState.show = false;
       return changeState;
 
     case 'logout':

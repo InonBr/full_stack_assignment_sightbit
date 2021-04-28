@@ -1,11 +1,25 @@
+import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { loginApi } from '../../lib/api';
+import localForage from 'localforage';
 import '../styles/forms.css';
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const [showError, setShowError] = useState(false);
+
+  const setLocalForage = (data) => {
+    localForage
+      .setItem('userToken', data.token)
+      .then(() => {
+        dispatch({ type: 'login' });
+      })
+      .catch(function (err) {
+        console.error(err);
+      });
+  };
 
   const {
     register,
@@ -16,10 +30,7 @@ const LoginForm = () => {
   const onSubmit = (data) => {
     loginApi(data)
       .then((response) => {
-        console.log(response.data);
-        // cookies.set('userToken', response.data.token);
-        // props.handleClose();
-        // window.location = '/';
+        setLocalForage(response.data);
       })
       .catch((error) => {
         const errorMessage = error.response.data.msg;
