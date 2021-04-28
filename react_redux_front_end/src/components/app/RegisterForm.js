@@ -1,12 +1,26 @@
+import { useDispatch } from 'react-redux';
 import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button, Form } from 'react-bootstrap';
+import localForage from 'localforage';
 import '../styles/forms.css';
 
 import { registerApi } from '../../lib/api';
 
 const RegisterForm = () => {
+  const dispatch = useDispatch();
   const [showError, setShowError] = useState(false);
+
+  const setLocalForage = (data) => {
+    localForage
+      .setItem('userToken', data.token)
+      .then(() => {
+        dispatch({ type: 'login' });
+      })
+      .catch(function (err) {
+        console.error(err);
+      });
+  };
 
   const {
     register,
@@ -21,7 +35,7 @@ const RegisterForm = () => {
   const onSubmit = (data) => {
     registerApi(data)
       .then((response) => {
-        console.log(response.data);
+        setLocalForage(response.data);
       })
       .catch((error) => {
         const errorMessage = error.response.data.message;

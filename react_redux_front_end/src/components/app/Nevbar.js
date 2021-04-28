@@ -1,13 +1,12 @@
 import { Button, Image } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import GoogleLogInButton from './GoogleLogInButton';
+import localForage from 'localforage';
 import '../styles/nevbar.css';
 
 function Nevbar() {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
-
-  console.log(state);
 
   const loginButton = () => {
     return (
@@ -33,13 +32,15 @@ function Nevbar() {
     );
   };
 
+  const logout = () => {
+    localForage.removeItem('userToken').then(() => {
+      dispatch({ type: 'logout' });
+    });
+  };
+
   const logoutButton = () => {
     return (
-      <Button
-        className='mb-3'
-        variant='outline-dark'
-        onClick={() => dispatch({ type: 'logout' })}
-      >
+      <Button className='mb-3' variant='outline-dark' onClick={() => logout()}>
         Logout
       </Button>
     );

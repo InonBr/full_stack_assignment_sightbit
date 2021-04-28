@@ -1,5 +1,7 @@
 .nevbar-style {
-  background-color: rgba(1, 149, 207, 0.25);
+  background: #076585;
+  background: -webkit-linear-gradient(to right, #fff, #076585);
+  background: linear-gradient(to right, #fff, #076585);
   margin-top: -20px;
 }
 
